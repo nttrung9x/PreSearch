@@ -1,7 +1,7 @@
 # Auto Almost Everything
 # Youtube Channel https://www.youtube.com/channel/UC4cNnZIrjAC8Q4mcnhKqPEQ
-# Facebook Community https://www.facebook.com/ghienAAE
-# Github Source Code https://github.com/srcaae?tab=repositories
+# Facebook Community https://www.facebook.com/loveAAEmuch
+# Github Source Code https://github.com/srcAAE?tab=repositories
 # Please read README.md carefully before use
 
 import random
@@ -15,7 +15,7 @@ import requests
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-chromedriver_path = '.\\chromedriver.exe'
+chromedriver_path = '.\\chromedriver.exe'  # <-- Change to your Chrome WebDriver path, replace "\" with "\\".
 opts = Options()
 opts.binary_location = 'C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe'  # <-- Change to your Chromium browser path, replace "\" with "\\".
 opts.add_experimental_option('excludeSwitches', ['enable-automation'])
@@ -95,12 +95,12 @@ def PreSearch():
                                 except:
                                     pass
                             count += 1
-                            time.sleep(3)
                     except:
                         pass
                     if count > presearch_max_count * 120 / 100:
                         Notification(app, 'Searched 30 times!')
                         break
+                    time.sleep(12)
             except Exception as ex:
                 print('%s has exception:\n%s!' % (app, ex))
                 Notification(app, '%s has exception:\n%s!' % (app, ex))
@@ -122,5 +122,5 @@ try:
 except Exception as ex:
     print('Threading has exception:\n%s!' % ex)
 
-# Please Like Facebook, Subscribe & Like Youtube channel
+# Please Like Facebook, Subscribe to Youtube channel, Give stars to Git repositories to support us!
 # Contact me: autoalmosteverything.2021@gmail.com
