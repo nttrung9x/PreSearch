@@ -91,7 +91,7 @@ def PreSearch():
                                     results[random.randint(0, len(results) - 1)].click()
                                     time.sleep(3)
                                     browser.back()
-                                    time.sleep(3)
+                                    time.sleep(9)
                                 except:
                                     pass
                             count += 1
@@ -100,14 +100,14 @@ def PreSearch():
                     if count > presearch_max_count * 120 / 100:
                         Notification(app, 'Searched 30 times!')
                         break
-                    time.sleep(12)
+                    time.sleep(30)
             except Exception as ex:
                 print('%s has exception:\n%s!' % (app, ex))
                 Notification(app, '%s has exception:\n%s!' % (app, ex))
             finally:
                 browser.quit()
             sync = True
-            time.sleep(7200)
+            time.sleep(1800)
         else:
             time.sleep(1)
 
