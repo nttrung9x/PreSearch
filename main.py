@@ -89,9 +89,9 @@ def PreSearch():
                                     results = browser.find_elements_by_xpath(
                                         "//h3[@class='font-semibold text-lg text-primary-600 transition duration-150 hover:underline hover:opacity-70 dark:hover:opacity-60 dark:text-blue-200 dark:font-normal']")
                                     results[random.randint(0, len(results) - 1)].click()
-                                    time.sleep(3)
-                                    browser.back()
                                     time.sleep(9)
+                                    browser.back()
+                                    time.sleep(3)
                                 except:
                                     pass
                             count += 1
