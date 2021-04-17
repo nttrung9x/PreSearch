@@ -143,7 +143,7 @@ def PreSearch(account):
                             count += 1
                     except:
                         pass
-                    if count > presearch_max_count * 120 / 100:
+                    if count > presearch_max_count * random.randint(6, 14) * 10 / 100:
                         Notification(app, 'Searched 30 times!')
                         break
                     time.sleep(random.randint(20, 40))
