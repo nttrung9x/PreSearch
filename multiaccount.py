@@ -14,16 +14,68 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from win10toast import ToastNotifier  # python -m pip install win10toast
 
-# Browser config
-chromedriver_path = '.\\chromedriver.exe'  # <-- Change to your Chrome WebDriver path, replace "\" with "\\".
-opts = Options()
-opts.binary_location = 'C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe'  # <-- Change to your Chromium browser path, replace "\" with "\\".
-opts.add_experimental_option('excludeSwitches', ['enable-automation'])
-opts.add_experimental_option('useAutomationExtension', False)
-opts.headless = True  # <-- Comment this line if you want to show browser.
-# opts.add_argument('--proxy-server=%s' % 'YourProxy')  # <-- Remove comment this line then replace 'YourProxy' by proxy string, such as 18.222.190.66:81.
-
 sync = True
+
+# Multi account config
+accounts = [
+    {  # Account 1 -->
+        'cookies': [
+            {
+                # Replace by your remember cookie name -->
+                'name': 'remember_web_59ba36addc2b2f9401580f014c7f58ea4e30989d',
+                # <-- Replace by your remember cookie value
+                # Replace by your remember token -->
+                'value': 'YourRememberTokenHere',
+                # <-- Replace by your remember token
+                'domain': '.presearch.org',
+                'path': '/',
+            },
+            {
+                'name': 'token',
+                # Replace by your token cookie value -->
+                'value': 'YourTokenHere',
+                # <-- Replace by your token cookie value
+                'domain': '.presearch.org',
+                'path': '/',
+            },
+        ],
+        # 'proxy': 'YourProxy',  # <-- Remove comment this line then replace 'YourProxy' by proxy string, such as 18.222.190.66:81.
+    }, # <-- Account 1
+    {  # Account 2 -->
+        'cookies': [
+            {
+                'name': 'remember_web_59ba36addc2b2f9401580f014c7f58ea4e30989d',
+                'value': 'YourRememberTokenHere',
+                'domain': '.presearch.org',
+                'path': '/',
+            },
+            {
+                'name': 'token',
+                'value': 'YourTokenHere',
+                'domain': '.presearch.org',
+                'path': '/',
+            },
+        ],
+        # 'proxy': 'YourProxy',  # <-- Remove comment this line then replace 'YourProxy' by proxy string, such as 18.222.190.66:81.
+    },  # <-- Account 2
+    {  # Account 3 -->
+        'cookies': [
+            {
+                'name': 'remember_web_59ba36addc2b2f9401580f014c7f58ea4e30989d',
+                'value': 'YourRememberTokenHere',
+                'domain': '.presearch.org',
+                'path': '/',
+            },
+            {
+                'name': 'token',
+                'value': 'YourTokenHere',
+                'domain': '.presearch.org',
+                'path': '/',
+            },
+        ],
+        # 'proxy': 'YourProxy',  # <-- Remove comment this line then replace 'YourProxy' by proxy string, such as 18.222.190.66:81.
+    },  # <-- Account 3
+]
 
 
 # Notification
@@ -36,30 +88,19 @@ def Notification(app, content):
 
 
 # Search 30 times
-def PreSearch():
+def PreSearch(account):
+    # Browser config
+    chromedriver_path = '.\\chromedriver.exe'  # <-- Change to your Chrome WebDriver path, replace "\" with "\\".
+    opts = Options()
+    opts.binary_location = 'C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe'  # <-- Change to your Chromium browser path, replace "\" with "\\".
+    opts.add_experimental_option('excludeSwitches', ['enable-automation'])
+    opts.add_experimental_option('useAutomationExtension', False)
+    opts.headless = True  # <-- Comment this line if you want to show browser.
+    if 'proxy' in account: opts.add_argument('--proxy-server=%s' % account['proxy'])  # <-- Comment this line to prevent using proxy or change proxy string to 'YourProxy'.
     # App config
     app = 'PreSearch'
     path = 'https://engine.presearch.org'
-    presearch_cookies = [
-        {
-            # Replace by your remember cookie name -->
-            'name': 'remember_web_59ba36addc2b2f9401580f014c7f58ea4e30989d',
-            # <-- Replace by your remember cookie value
-            # Replace by your remember token -->
-            'value': 'YourRememberTokenHere',
-            # <-- Replace by your remember token
-            'domain': '.presearch.org',
-            'path': '/',
-        },
-        {
-            'name': 'token',
-            # Replace by your token cookie value -->
-            'value': 'YourTokenHere',
-            # <-- Replace by your token cookie value
-            'domain': '.presearch.org',
-            'path': '/',
-        },
-    ]
+    presearch_cookies = account['cookies']
     # Word list for generating key word
     word_site = 'https://www.mit.edu/~ecprice/wordlist.10000'
     response = requests.get(word_site)
@@ -119,7 +160,8 @@ def PreSearch():
 
 try:
     threads = []
-    threads.append(threading.Thread(target=PreSearch, args=()))
+    for account in accounts:
+        threads.append(threading.Thread(target=PreSearch, args=(account,)))
     for thread in threads:
         thread.start()
     for thread in threads:
