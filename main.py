@@ -20,7 +20,7 @@ opts = Options()
 opts.binary_location = 'C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe'  # <-- Change to your Chromium browser path, replace "\" with "\\".
 opts.add_experimental_option('excludeSwitches', ['enable-automation'])
 opts.add_experimental_option('useAutomationExtension', False)
-opts.headless = True  # <-- Comment this line if you want to show browser.
+# opts.headless = True  # <-- Remove comment this line if you want to hide browser.
 # opts.add_argument('--proxy-server=%s' % 'YourProxy')  # <-- Remove comment this line then replace 'YourProxy' by proxy string, such as 18.222.190.66:81.
 
 sync = True
