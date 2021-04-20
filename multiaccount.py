@@ -8,8 +8,8 @@ import random
 import threading
 import time
 
-import requests # python -m pip install request
-from selenium import webdriver # python -m pip install seleniu
+import requests  # python -m pip install request
+from selenium import webdriver  # python -m pip install seleniu
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from win10toast import ToastNotifier  # python -m pip install win10toast
@@ -21,26 +21,26 @@ accounts = [
     {  # Account 1 -->
         'cookies': [
             {
-                # Replace by your remember cookie name -->
+                # Replace by your remember name -->
                 'name': 'remember_web_59ba36addc2b2f9401580f014c7f58ea4e30989d',
-                # <-- Replace by your remember cookie value
+                # <-- Replace by your remember name
                 # Replace by your remember token -->
-                'value': 'YourRememberTokenHere',
+                'value': 'YourRememberToken',
                 # <-- Replace by your remember token
                 'domain': '.presearch.org',
                 'path': '/',
             },
             {
                 'name': 'token',
-                # Replace by your token cookie value -->
-                'value': 'YourTokenHere',
-                # <-- Replace by your token cookie value
+                # Replace by your token -->
+                'value': 'YourToken',
+                # <-- Replace by your token
                 'domain': '.presearch.org',
                 'path': '/',
             },
         ],
-        # 'proxy': 'YourProxy',  # <-- Remove comment this line then replace 'YourProxy' by proxy string, such as 18.222.190.66:81.
-    }, # <-- Account 1
+        # 'proxy': 'YourProxy',  # <-- To use proxy, remove comment this line then replace 'YourProxy' by proxy string, such as 18.222.190.66:81.
+    },  # <-- Account 1
     {  # Account 2 -->
         'cookies': [
             {
@@ -56,7 +56,7 @@ accounts = [
                 'path': '/',
             },
         ],
-        # 'proxy': 'YourProxy',  # <-- Remove comment this line then replace 'YourProxy' by proxy string, such as 18.222.190.66:81.
+        # 'proxy': 'YourProxy',  # <-- To use proxy, remove comment this line then replace 'YourProxy' by proxy string, such as 18.222.190.66:81.
     },  # <-- Account 2
     {  # Account 3 -->
         'cookies': [
@@ -73,7 +73,7 @@ accounts = [
                 'path': '/',
             },
         ],
-        # 'proxy': 'YourProxy',  # <-- Remove comment this line then replace 'YourProxy' by proxy string, such as 18.222.190.66:81.
+        # 'proxy': 'YourProxy',  # <-- To use proxy, remove comment this line then replace 'YourProxy' by proxy string, such as 18.222.190.66:81.
     },  # <-- Account 3
 ]
 
@@ -96,7 +96,9 @@ def PreSearch(account):
     opts.add_experimental_option('excludeSwitches', ['enable-automation'])
     opts.add_experimental_option('useAutomationExtension', False)
     opts.headless = True  # <-- Comment this line if you want to show browser.
-    if 'proxy' in account: opts.add_argument('--proxy-server=%s' % account['proxy'])  # <-- Comment this line to prevent using proxy or change proxy string to 'YourProxy'.
+    if 'proxy' in account and account['proxy'] != 'YourProxy':
+        opts.add_argument('--proxy-server=%s' % account['proxy'])
+
     # App config
     app = 'PreSearch'
     path = 'https://engine.presearch.org'

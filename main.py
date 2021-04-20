@@ -8,8 +8,8 @@ import random
 import threading
 import time
 
-import requests # python -m pip install request
-from selenium import webdriver # python -m pip install seleniu
+import requests  # python -m pip install request
+from selenium import webdriver  # python -m pip install seleniu
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from win10toast import ToastNotifier  # python -m pip install win10toast
@@ -21,7 +21,7 @@ opts.binary_location = 'C:\\Program Files\\BraveSoftware\\Brave-Browser\\Applica
 opts.add_experimental_option('excludeSwitches', ['enable-automation'])
 opts.add_experimental_option('useAutomationExtension', False)
 # opts.headless = True  # <-- Remove comment this line if you want to hide browser.
-# opts.add_argument('--proxy-server=%s' % 'YourProxy')  # <-- Remove comment this line then replace 'YourProxy' by proxy string, such as 18.222.190.66:81.
+# opts.add_argument('--proxy-server=%s' % 'YourProxy')  # <-- To use proxy, remove comment this line then replace 'YourProxy' by proxy string, such as 18.222.190.66:81.
 
 sync = True
 
@@ -42,24 +42,25 @@ def PreSearch():
     path = 'https://engine.presearch.org'
     presearch_cookies = [
         {
-            # Replace by your remember cookie name -->
+            # Replace by your remember name -->
             'name': 'remember_web_59ba36addc2b2f9401580f014c7f58ea4e30989d',
-            # <-- Replace by your remember cookie value
+            # <-- Replace by your remember name
             # Replace by your remember token -->
-            'value': 'YourRememberTokenHere',
+            'value': 'YourRememberToken',
             # <-- Replace by your remember token
             'domain': '.presearch.org',
             'path': '/',
         },
         {
             'name': 'token',
-            # Replace by your token cookie value -->
-            'value': 'YourTokenHere',
-            # <-- Replace by your token cookie value
+            # Replace by your token -->
+            'value': 'YourToken',
+            # <-- Replace by your token
             'domain': '.presearch.org',
             'path': '/',
         },
     ]
+
     # Word list for generating key word
     word_site = 'https://www.mit.edu/~ecprice/wordlist.10000'
     response = requests.get(word_site)
