@@ -100,11 +100,8 @@ Hằng ngày, bạn có 30 lượt tìm kiếm ngẫu nhiên được tặng 0.1
 
 Email: autoalmosteverything.2021@gmail.com
 
-
-Github: https://github.com/srcAAE?tab=repositories
-
-
 Youtube: https://www.youtube.com/channel/UC4cNnZIrjAC8Q4mcnhKqPEQ
 
+Github: https://github.com/autoalmosteverything?tab=repositories
 
-Facebook: https://www.facebook.com/loveAAEmuch
+Facebook: https://www.facebook.com/autoalmosteverything
